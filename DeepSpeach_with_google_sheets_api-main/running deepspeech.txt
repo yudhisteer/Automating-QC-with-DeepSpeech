@@ -1,0 +1,3 @@
+python mic_vad_streaming.py -m C:\Users\yudishteer.c\Desktop\deepspeech\deepspeech-0.9.3-models.pbmm -s C:\Users\yudishteer.c\Desktop\deepspeech\deepspeech-0.9.3-models.scorer
+
+python script.py -m C:\Users\yudishteer.c\Desktop\deepspeech\deepspeech-0.9.3-models.pbmm -s C:\Users\yudishteer.c\Desktop\deepspeech\deepspeech-0.9.3-models.scorer
