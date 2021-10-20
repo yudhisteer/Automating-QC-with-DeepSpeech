@@ -34,6 +34,7 @@ Inside the main() function, a while loop has been used to continuously input mea
 4. Stream Audio
 5. Check for keywords: "Start" & "Stop"
 6. Check for keywords: "Next"
+7. Clean Data
 
 ### 1. Import Dependencies
 
@@ -169,7 +170,7 @@ We do the same for the word "stop":
 
 ### 6. Check for keywords: "Next"
 
-We start by removing the "Start" and "Start" words in our array by by slicing our array using the variable ```start``` and ```stop``` created above. We store the data in between in the variable ```needed```.
+We start by removing the "Start" and "Start" words in our array by by slicing our array using the variable ```start``` and ```stop``` created above. We store the data in between in the variable ```needed```= ```['23' 'next' '34' 'next' '45']```.
 
 ```
 #We are removing "Start" & "Stop" from Text
@@ -178,8 +179,41 @@ if len(np.where(data == "stop")[0]) > 0 and len(np.where(data == "start")[0]) > 
    print(np.array(data[start+1:stop])) #start = 0; stop = 6. Therefore we take only values of text from index 1 to 6(index 6 is not taken)
    print("needed: " + str(needed))
 ```
+We then need to find indexes of the word "next" in the array ```needed``` and store them in the array ```nexts``` as such ```nexts = [1 3]```. Using the condition of length of the array ```nexts``` not equal to zero, we stored the first number and the last one in the array ```needed``` using the variable ```first``` and ```last``` respectively. We create an empty list called ```digits``` and appende dthe first number to it using the variable ```first```. 
 
+We then write a ```for``` loop that will iterate through all the nunbers in between the first and last number and append it to the list ```digits```. We finish by appending the last number using the variable ```last```. The result is as such = ```digits = [array(['23'], dtype='<U5'), array(['34'], dtype='<U5'), array(['45'], dtype='<U5')]```.
 
+```
+if len(np.where(data=="stop")[0])>0 and len(np.where(data=="start")[0])>0:
+    needed=np.array(data[start+1:stop])
+    nexts=np.where(needed=="next")[0]
+    if len(nexts)==0 :
+        print("no parametre 'next' was detected")	
+    elif len(nexts)!=0 :
+        print(f"{len(nexts)+1} numbers are detected")
+        first=needed[0:nexts[0]]
+        last=needed[nexts[-1]+1:]
+        digits=[]
+        digits.append(first)
+        for i in range(len(nexts)-1):
+           digits.append(needed[nexts[i]+1:nexts[i+1]])
+        digits.append(last)
+```
+
+### 7. Clean Data
+
+We create an empty list called ```nums```. Using a ```for``` loop nested inside another ```for``` loop, we iterate through the values of the list ```digits``` and take only the numbers and append it to the ```nums```.
+
+```
+nums=[]
+empty=""
+for i in digits:
+    for j in i:
+        empty+=str(j)
+        empty+=" "
+    nums.append(empty)
+    empty=""
+```
 
 ## Testing
 
