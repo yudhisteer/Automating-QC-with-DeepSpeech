@@ -221,7 +221,7 @@ for i in digits:
 
 From the excel template I created, we need to start populating it as from ```B3``` which is the second column. Furthermore, each garments requires 7 measurements to be taken so for the first garment we need to do the entry from cell ```B3``` to ```B9.``` For the second garment, the entry will start from ```C3``` to ```C9``` and will continue as such for other garments. 
 
-Variable ```column``` has an initial value 2(For the second column: ```B2```) which is updated after each 7 measurements. Using a ```for``` loop, we iterate through the values inside our list ```nums``, convert them to numbers using ```w2n.word_to_num(nums[i])``` and populate the desired cell. 
+Variable ```column``` has an initial value 2(For the second column: ```B2```) which is updated after each 7 measurements. Using a ```for``` loop, we iterate through the values inside our list ```nums`` , convert them to numbers using ```w2n.word_to_num(nums[i])``` and populate the desired cell. 
 
 ```
 #Columns has initial value of 2
@@ -239,6 +239,25 @@ sheet.update_cell(1000,26,int(sheet.cell(1000,26).value)+1)
 ```
 
 ## Testing
+
+I did several tests and the result has been satisfactory except some few exceptions. One major drawback of the model is that it has been trained on US or UK English accents and
+the model has not been accurately predicting the Mauritian accent. For example, the algorithm would confuse the word "next" with "necks" or "any" with "eight". There have been several instances of mispronounciation and below is a script that would replace the most frequent ones with the correct words:
+
+```
+# We replace mispronounced words
+
+text=text.replace("necks","next")
+text=text.replace("and","next")
+text=text.replace("any","eight")
+text=text.replace("men","next")
+text=text.replace("that","next")
+text=text.replace("starts","start")
+text=text.replace("started","start")
+text=text.replace("stopped","stop")
+text=text.replace("for the","forty")
+text=text.replace("for","four")	
+print("Recognized: %s" % text)
+```
 
 ## Conclusion
 
