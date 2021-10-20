@@ -240,8 +240,7 @@ sheet.update_cell(1000,26,int(sheet.cell(1000,26).value)+1)
 
 ## Testing
 
-I did several tests and the result has been satisfactory except some few exceptions. One major drawback of the model is that it has been trained on US or UK English accents and
-the model has not been accurately predicting the Mauritian accent. For example, the algorithm would confuse the word "next" with "necks" or "any" with "eight". There have been several instances of mispronounciation and below is a script that would replace the most frequent ones with the correct words:
+I did several tests and the result has been satisfactory except for some few exceptions. One major drawback of the model is that it has been trained on US or UK English accents and the model has not been accurately predicting the Mauritian accent. For example, the algorithm would confuse the word "next" with "necks" or "any" with "eight". There have been several instances of mispronounciation and below is a script that would replace the most frequent ones with the correct words:
 
 ```
 # We replace mispronounced words
