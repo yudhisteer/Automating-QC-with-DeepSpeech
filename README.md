@@ -35,6 +35,7 @@ Inside the main() function, a while loop has been used to continuously input mea
 5. Check for keywords: "Start" & "Stop"
 6. Check for keywords: "Next"
 7. Clean Data
+8. Data Entry
 
 ### 1. Import Dependencies
 
@@ -64,7 +65,8 @@ from pprint import pprint
 
  We start by creating a template on Google Sheet as shown below. ```Sample``` are the different garments that will be measured and ```specs``` are the different parts(sleeve, collar, hem,...) that need to be measured.
  
- ![image](https://user-images.githubusercontent.com/59663734/137855649-52dbc6aa-4c1b-4657-9a89-fe5c9460fcf9.png)
+![image](https://user-images.githubusercontent.com/59663734/138092576-40613d98-4ffe-4062-9390-92c8112f4c05.png)
+
 
 We initialize our google sheet with our credentials:
 
@@ -202,7 +204,7 @@ if len(np.where(data=="stop")[0])>0 and len(np.where(data=="start")[0])>0:
 
 ### 7. Clean Data
 
-We create an empty list called ```nums```. Using a ```for``` loop nested inside another ```for``` loop, we iterate through the values of the list ```digits``` and take only the numbers and append it to the ```nums```.
+We create an empty list called ```nums```. Using a ```for``` loop nested inside another ```for``` loop, we iterate through the values of the list ```digits``` and take only the numbers assigned to the variable ```empty``` and append it to the ```nums```.
 
 ```
 nums=[]
@@ -213,6 +215,27 @@ for i in digits:
         empty+=" "
     nums.append(empty)
     empty=""
+```
+
+### 8. Data Entry
+
+From the excel template I created, we need to start populating it as from ```B3``` which is the second column. Furthermore, each garments requires 7 measurements to be taken so for the first garment we need to do the entry from cell ```B3``` to ```B9.``` For the second garment, the entry will start from ```C3``` to ```C9``` and will continue as such for other garments. 
+
+Variable ```column``` has an initial value 2(For the second column: ```B2```) which is updated after each 7 measurements. Using a ```for``` loop, we iterate through the values inside our list ```nums``, convert them to numbers using ```w2n.word_to_num(nums[i])``` and populate the desired cell. 
+
+```
+#Columns has initial value of 2
+columns=int(sheet.cell(1000,26).value)
+
+for i in range(len(nums)):
+ try:
+     sheet.update_cell(3+i,columns,w2n.word_to_num(nums[i]) )
+ except:
+     print(f"a number speled wrong ?{nums[i]}")
+     sheet.update_cell(3+i,columns,w2n.word_to_num("one"))
+     
+#Updating our variable columns     
+sheet.update_cell(1000,26,int(sheet.cell(1000,26).value)+1)
 ```
 
 ## Testing
