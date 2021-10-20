@@ -260,5 +260,18 @@ print("Recognized: %s" % text)
 ```
 
 ## Conclusion
+Automating quality control with DeepSpeech would really facilitate the AC people who would have to constantly repeat the process of taking measurement and data entry on an excel. We had the pleasure of testing it for several weeks and it did reduced the overall time of taking measurements of the garments. However, when we analyze the overall process there are two mains parts:
+
+1. Taking Measurements
+2. Data Entry
+
+Unfortunately, with DeepSpeech we could automate only the second part of the process as we would still require a person to painstkingly take the measurement of each garment. With this approach, we solved half of the problem. If we want to really optimize the process flow and reduce the cost associated with the AC Dept then we need a new approach that will tackle both part of the problem.
 
 ## Improvement
+If we want to tackle the problem at its roots then we need to find a novel way that would automate the taking of measurements. One possibility for it would be to train a computer vision model that would recognise a shirt and detect the points or corners that are required and calculate the distance between these points. We will need to pre-process the image to avoid warping and convert our distance which is in pixel to mm. With a solution as such, we would completely, eliminate human intervention in the process as the model could also do the data entry after calculating the distance. 
+
+After testing several other methods of measuring using computer vision, I managed to acheive the feat described above using Detectron2. The second part of the project is found at this link: https://github.com/yudhisteer/Phase-2_Automating-QC-with-Detectron2
+
+
+
+
