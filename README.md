@@ -4,27 +4,33 @@ In the Quality Control(QC) Department at RT Knits Ltd, we have people taking mea
 
 After all the pieces(front panel, back panel, side panels,...) of the garments have been cut in the Cutting Department, they are assembled in the Make-Up Department. After being assembled, a group of people need to check if the final product matches the desired measurements given by the client. These QC people uses a tape measure to take the measurements and after each measurement between two points, they enter the value in a specific excel sheet, they then move on to the next measurements and continue as such. 
 
-### Data on Current Procedure
+## Abstract
+The problem of the Quality Control(QC) Department is in two parts:
 
-Different clients require different types of measurement to be taken. For the purpose of this project, I collected data on measuring T-Shirts for ASOS. I timed the process and counted the number of T-shirts they need to measure and the number of people required to do so.
+1. Taking Measurements
+2. Data Entry
+
+For the purpose of this project, I decided to automate the second part of the problem. Using a free open-source speech-to-text model - DeepSpeech - I decided to eliminate the process of data entry whereby the user would only need to speak thorugh a microphone and using the Google Sheet API it would automatically populate a google sheet. 
+
+A garment requires approx 7 measurements(sleeve width, hem, collar,...) to be taken. With the new system, the user would taken measurments as follows: ```Start 32 next 54 next 43 next 87 next 43 next 56 next 33 Stop```. The model was configured to detect keywords such as "start", "next" and "stop" to take measurements of 1 garment. The measurements in between the keywords such as the numebrs 32, 54 and so on, should be taken in the same order. That is, the first measurement is that of "Sleeve width", the second measurment is "Collar" and so on. This will ensure the data entry is done in a consistent way. 
+
+After building the algorithm, several tests have been made and there have been instances of mispronounciation. Mainly because the model has only been trained on UK/US English accent. The model could not predict accurately some words in the Mauritian accent and this created some problems in the Data Entry. A new approach would be to solve the problem at its roots by automating both the process of "Taking Measurements" and "Data Entry". The seocnd phase of this project is under testing and can be found at this link: https://github.com/yudhisteer/Phase-2_Automating-QC-with-Detectron2
+
+## How to measure?
+
+Different clients require different types of measurement. For the purpose of this project, I collected data on measuring T-Shirts for ASOS. I timed the process and counted the number of T-shirts they need to measure and the number of people required to do so.
 
 | Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11 | #12 |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269 | 254 |
 
-## Abstract
-
-
-
-
+(To be revised...)
 
 ## Methods
 
 As a first step, I chose to automate the process of data entry on the excel. Using Natural Language Processing(NLP) - the **DeepSpeech** model, I imagine the QC people to have a headset in which they would talk into and the system would recognise specific keywords, and populate their excel sheet. 
 
-Inside the main() function, a while loop has been used to continuously input measurements. While the user does not say **“stop”**, the program keeps asking for measurements. Each measurement is recorded inside a list called **“data”**. The list holds the measurements for 1 garment at a time. Each measurement should be input in English. The conditions to alter the state of the program (i.e “next”,”stop”) should be input in English. If the user does not say “next” or “stop” when asked for input, the input is treated as a measurement and recorded in the list. If the user says “next” or “stop”, the list is saved to a dictionary by adding it as a definition, with the current garment number being the index. An integer variable “count” has been used to keep track of the garment number (garment number 1, garment number 2, etc...). The variable “count” is incremented. The list “values” is re-initialised to empty. If the user did say “next”, the loop starts again, allowing input of measurements for next garment. If the user said “stop”, the while loop stops executing.
-
-(To be revised...)
+Inside the main() function, a ```for``` loop has been used to continuously input measurements. While the user does not say "stop", the program keeps asking for measurements. Each measurement is recorded inside an array called ```data```. The array holds the measurements for 1 garment at a time. Each measurement should be input in English. The conditions to alter the state of the program (i.e “next”,”stop”) should be input in English. If the user does not say “next” or “stop” when asked for input, the input is treated as a measurement and recorded in the array. The keywords "start", "next" and "stop" is removed from the list and only the numbers in between is taken. An integer variable “columns” has been used to keep track of the garment number (garment number 1, garment number 2, etc...) and used for data entry in a Google Sheet. The variable “count” is incremented for each new column. The array “data” is re-initialised to empty. If the user did say “stop”, the loop starts again, allowing input of measurements for next garment. 
 
 ## Plan of Action
 
