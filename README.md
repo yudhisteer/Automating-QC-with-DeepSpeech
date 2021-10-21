@@ -20,6 +20,9 @@ After building the algorithm, several tests have been made and there have been i
 
 Different clients require different types of measurement. For the purpose of this project, I collected data on measuring T-Shirts for ASOS. I timed the process and counted the number of T-shirts they need to measure and the number of people required to do so.
 
+![image](https://user-images.githubusercontent.com/59663734/138277860-7666599e-9d3e-4e52-81ec-ac22a76b9622.png)
+
+
 | Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11 | #12 |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269 | 254 |
