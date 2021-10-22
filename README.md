@@ -18,16 +18,23 @@ After building the algorithm, several tests have been made and there have been i
 
 ## How to measure?
 
-Different clients require different types of measurement. For the purpose of this project, I collected data on measuring T-Shirts for ASOS. I timed the process and counted the number of T-shirts they need to measure and the number of people required to do so.
+Different clients require different types of measurement. For the purpose of this project, I chose to automate the quality control process for T-shirts only. Some clients require staright line measurement between 2 points and others require the length of a curvature or even some require the length of two legs of a 90 degrees triangle of a curve part. Below is a How to measure? sheet in a tech pack which shows the process of taking measurements:
 
 ![image](https://user-images.githubusercontent.com/59663734/138277860-7666599e-9d3e-4e52-81ec-ac22a76b9622.png)
 
+### AQL
+'AQL' stands for **'Acceptance Quality Limit'**, and is defined as the “quality level that is the worst tolerable” in ISO 2859-1. It represents the maximum number of defective units, beyond which a batch is rejected. Based on the sampling data, the customer can make an informed decision to accept or reject the lot.
 
-| Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11 | #12 |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269 | 254 |
+An AQL result of 1.5 accepts the statistical probability that there are less than 1.5% of the products with defects in the batch. An AQL of 0.65 assumes a more stringent quality acceptance level. Below is a table of the different AQL required by the clients:
 
-(To be revised...)
+| Client | AQL |
+| :---: | :---: |
+| Adidas | 1.0 |
+| LaCoste | 1.0 |
+| ASOS | 2.5 |
+| WoolWorths | 1.0 |
+| Puma | 1.0 |
+| Cape Union Mart | 2.5 |
 
 ## Methods
 
